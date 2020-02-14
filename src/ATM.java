@@ -24,6 +24,7 @@ public class ATM {
 		}
 	}
 	public static void main(String[] args) throws NegativeBalanceException {
+		
 		ATM atm = new ATM();
 		atm.handleTransactions();
 
