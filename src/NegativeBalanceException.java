@@ -6,21 +6,22 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.text.NumberFormat;
 
 public class NegativeBalanceException extends Exception {
 	
-	private static double negativeBalance;
+	private BigDecimal negativeBalance = new BigDecimal("0");
 	private static NumberFormat currency = NumberFormat.getCurrencyInstance();
 	
 	public NegativeBalanceException() {
 		super("Error: negative balance");
 	}
 
-	public NegativeBalanceException(double negativeBalance) {
+	public NegativeBalanceException(BigDecimal negativeBalance) {
 		
 		super("Amount exceeds balance by " + currency.format(negativeBalance));
-		NegativeBalanceException.negativeBalance = negativeBalance;
+		this.negativeBalance = negativeBalance;
 		
 		try {
 			PrintWriter out;

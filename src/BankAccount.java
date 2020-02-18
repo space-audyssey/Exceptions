@@ -1,29 +1,31 @@
+import java.math.BigDecimal;
+
 /*
  * Author: Audrey Horne
  */
 
 public class BankAccount {
 	
-	private double balance;
+	private BigDecimal balance;
 
-	public BankAccount(double balance) {
+	public BankAccount(BigDecimal balance) {
 		super();
 		this.balance = balance;
 	}
 	
-	public void withdraw(double withdrawAmount) throws NegativeBalanceException {
-		if (withdrawAmount > balance) {
-			throw new NegativeBalanceException(balance - withdrawAmount);
+	public void withdraw(BigDecimal withdrawAmount) throws NegativeBalanceException {
+		if (withdrawAmount.compareTo(balance) == 1) {
+			throw new NegativeBalanceException(balance.subtract(withdrawAmount));
 		} else {
-			balance -= withdrawAmount;
+			balance.subtract(withdrawAmount);
 		}
 	}
 	
-	public void quickWithdraw(double withdrawAmount) throws NegativeBalanceException {
-		if (withdrawAmount > balance) {
+	public void quickWithdraw(BigDecimal withdrawAmount) throws NegativeBalanceException {
+		if (withdrawAmount.compareTo(balance) == 1) {
 			throw new NegativeBalanceException();
 		} else {
-			balance -= withdrawAmount;
+			balance.subtract(withdrawAmount);
 		}
 	}
 }

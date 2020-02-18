@@ -2,27 +2,29 @@
  * Author: Audrey Horne
  */
 
-import java.io.FileNotFoundException;
+
+import java.math.BigDecimal;
 
 public class ATM {
 	
-	private BankAccount bankAccount = new BankAccount(500);
+	private BankAccount bankAccount = new BankAccount(new BigDecimal("500"));
 	
 	public void handleTransactions() throws NegativeBalanceException {
 		try {
-			bankAccount.withdraw(600);
+			bankAccount.withdraw(new BigDecimal("600"));
 		} catch (NegativeBalanceException e) {
 			System.out.println(e);
 			System.out.println(e.getMessage());
 		}
 		
 		try {
-			bankAccount.quickWithdraw(600);
+			bankAccount.quickWithdraw(new BigDecimal("600"));
 		} catch (NegativeBalanceException e){
 			System.out.println(e);
 			System.out.println(e.getMessage());
 		}
 	}
+	
 	public static void main(String[] args) throws NegativeBalanceException {
 		
 		ATM atm = new ATM();
