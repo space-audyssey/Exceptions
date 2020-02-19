@@ -1,0 +1,20 @@
+1) Why use BigDecimal instead of double type for currency?
+
+Answer: BigDecimal is better for currency because our money is discrete values, not continuous. Because of the
+way the double type is stored in a computer, operations can, in a way, be imprecise (i.e. 0.3 - 0.2 could be
+stored as 0.0999999999998; while this would round to the correct answer, it's not exactly the true answer). 
+However, BigDecimal deals with discrete values in a more precise manner (i.e. 0.3-0.2 = 0.1 if using BigDecimal
+type). Our money is never going to be represented in increments smaller than 0.01, so BigDecimal is better at
+representing it than doubles.
+
+2) What are 3 good practices related to exception handling?
+
+Answer: 1) Only catch exceptions that you can handle! Do not try to catch the exception and then 'handle' it by
+throwing it. 2) Although your exception handling may work, you shouldn't just 'be done' once it works. You 
+really need to consider whether it's the most efficient, elegant exception handling -- in my mind, this is
+similar to declaring the accessibility for variables/methods/etc. Yes, you could have an instance variable as 
+public, but should you? Similarly, you can handle an exception at the very end of the line, but should you? Or
+would it be better to handle in a method earlier in the calls? 3) You should always include all relevant details
+about your exception in a single log message. I didn't realize, but if you try to write two 'subsequent' 
+messages to your log, it's unlikely they'll print out one after the other; this will make another developer very
+angry if they're trying to look through the log.
